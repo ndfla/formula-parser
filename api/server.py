@@ -1,5 +1,9 @@
 from flask import Flask, render_template, request, jsonify,url_for
-import util.main as main
+
+import sys
+
+sys.path.append('api/util')
+import main
 import json
 import os
 
