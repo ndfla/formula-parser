@@ -2,7 +2,7 @@ import json
 import os
 import struct
 
-with open("base64_table.json") as f:
+with open("api/base64_table.json") as f:
     table = json.load(f)  
 inv_table = {v:k for k,v in table.items()}
 
