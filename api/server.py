@@ -1,8 +1,7 @@
 from flask import Flask, render_template, request, jsonify,url_for
-import main
+import util.main as main
 import json
 import os
-
 
 app = Flask(__name__)
 

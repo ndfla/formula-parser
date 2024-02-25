@@ -1,8 +1,7 @@
 import re
 import numpy as np
-import parser_functions as parser_functions
-import encode_vitaltable as encode_vitaltable
-
+import parser_functions 
+import encode_vitaltable 
 
 def execute(formula, num_of_waves, filename, out):
     
