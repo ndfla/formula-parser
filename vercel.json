@@ -27,5 +27,10 @@
         }
     ],
 
-    "rewrites": [{ "src": "/(.*)", "dest": "/api/server.py" }]
+    "rewrites": [
+        { 
+            "source": "/(.*)", 
+            "destination": "/api/server.py" 
+        }
+    ]
 }
