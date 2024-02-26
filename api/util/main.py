@@ -50,7 +50,6 @@ def execute(formula, num_of_waves, filename, out):
         m = max([np.max(np.abs(i)) for i in waves])
             
         waves = [i/m for i in waves]
-        
 
         jsonfile = encode_vitaltable.create_vitaltable(positions, waves, filename, out)
         

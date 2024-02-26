@@ -61,7 +61,7 @@ def create_vitaltable(position, float_wave, filename, out):
         "remove_all_dc":True,
         "version":"1.0.7"}
     
-    save_file_at_dir(out, filename + '.vitaltable', json.dumps(js))
+    # save_file_at_dir(out, filename + '.vitaltable', json.dumps(js))
     
     return json.dumps(js)
 
