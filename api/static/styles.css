@@ -19,6 +19,7 @@
 }
 
 #waveform {
+    display: inline;
     position: relative;
         width: 90%;
         height: 90%;
@@ -30,7 +31,9 @@
 }
 
 #button_container {
+    display: inline-block;
     position: relative;
+    left: 10%;
     top: 40%;
     margin: auto;
     width: 80%;
@@ -69,10 +72,11 @@
 }
 
 #input_formula {
-    display: block;
+    display: inline;
     outline: none;
     position: relative;
     top: 15%;
+    left: 15%;
     border-radius: inherit;
     border-width: 0;
     width: 70%;
@@ -81,16 +85,16 @@
     line-height: 20px;
     margin: auto;
     white-space: pre-wrap;
-
     resize: none;
     vertical-align: top;
 }
 
 #input_num {
-    display: block;
+    display: inline;
     outline: none;
     position: relative;
     top: 30%;
+    left: 15%;
     border-radius: inherit;
     border-width: 0;
     width: 70%;
