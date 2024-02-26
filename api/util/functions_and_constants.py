@@ -8,7 +8,7 @@ def case(args):
 def avg(args):
     return sum(args)/len(args)
 
-func_set = {'sin','cos','tan','asin','acos','atan','sinh','cosh','tanh','exp', 'log','log2','sign','abs','avg','case'}
+func_set = {'sin','cos','tan','asin','acos','atan','sinh','cosh','tanh', 'sinc', 'exp', 'log','log2','sign','abs','avg','case'}
 
 function = {
     'sin':np.sin,
@@ -20,6 +20,7 @@ function = {
     'sinh':np.sinh,
     'cosh':np.cosh,
     'tanh':np.tanh,
+    'sinc':np.sinc,
     'exp':np.exp, 
     'log':np.log,
     'log2':np.log2,
