@@ -25,7 +25,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('api/templates/index.html')
 
 @app.route('/run_script', methods=['POST'])
 def run_script():
