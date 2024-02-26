@@ -7,7 +7,7 @@ import main
 import json
 import os
 
-app = Flask(__name__)
+api = Flask(__name__)
 
 # @app.context_processor
 # def override_url_for():
@@ -23,11 +23,11 @@ app = Flask(__name__)
 #     return url_for(endpoint, **values)
 
 
-@app.route('/')
+@api.route('/')
 def index():
-    return render_template('api/templates/index.html')
+    return render_template('index.html')
 
-@app.route('/run_script', methods=['POST'])
+@api.route('/run_script', methods=['POST'])
 def run_script():
     
     data = request.get_data()
@@ -40,6 +40,6 @@ def run_script():
     
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    api.run(debug=True)
     
     
