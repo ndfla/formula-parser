@@ -3,6 +3,8 @@ from flask import Flask, render_template, request, jsonify,url_for
 import sys
 
 sys.path.append('api/util')
+sys.path.append('api/templates')
+
 import main
 import json
 import os
