@@ -1,3 +1,29 @@
 {
-    "rewrites": [{ "source": "/(.*)", "destination": "/api/index" }]
+
+    "builds": [
+        {
+            "src": "api/server.py",
+            "use": "@vercel/python",
+            "config": {
+                "runtime": "python3.9"
+            }
+        },
+        {
+            "src": "api/static/(.*)",
+            "use": "@vercel/static-build",
+            "config": {
+              "distDir": "static"
+            }
+        }
+    ],
+    "routes": [
+        {
+            "src": "api/static/(.*)",
+            "dest": "api/static/"
+        },
+        {
+            "src": "api/(.*)",
+            "dest": "api/server.py"
+        }
+    ]
 }
