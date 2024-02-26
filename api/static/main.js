@@ -198,8 +198,12 @@ keys.forEach(function(elem) {
 });
 
 keys.forEach(function(elem) {
-    elem.addEventListener("touchcancel", e => {up(e)})
+    elem.addEventListener("touchcancel", e => {keyupev(
+        parseInt(e.currentTarget.dataset.num))})
 });
+
+
+piano = document.getElementById("piano")
 
 function disableScroll(event) {
     event.preventDefault();
@@ -207,17 +211,14 @@ function disableScroll(event) {
 
 keys.forEach(function(elem) {
     elem.addEventListener("touchstart", e => {
-        document.addEventListener('touchmove', disableScroll, { passive: false });
-
+        piano.addEventListener('touchmove', disableScroll, { passive: false });
     })
 });
 
 keys.forEach(function(elem) {
-    
     elem.addEventListener("touchend", e => {
-        console.log(e.touches.length)
-        if (e.touches.length == 0) document.removeEventListener('touchmove', disableScroll, { passive: false });
 
+        if (e.touches.length == 0) piano.removeEventListener('touchmove', disableScroll, { passive: false });
     })
 });
 
@@ -229,7 +230,6 @@ keys.forEach(function(elem) {
     elem.addEventListener("touchend", e => {keyupev(
         parseInt(e.currentTarget.dataset.num))})
 });
-
 
 
 function resize(canvas) {
