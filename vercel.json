@@ -1,5 +1,9 @@
 {
-
+  "version": 2,
+  "builds": [{ "src": "*.py", "use": "@now/python" }],
+  "routes": [
+      { "src": "/.*", "dest": "/"}
+      ],
 
     "rewrites": [{ "source": "/(.*)", "destination": "/api/index" }]
   }
