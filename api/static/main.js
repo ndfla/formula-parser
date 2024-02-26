@@ -19,8 +19,6 @@ var CanvasWave = [...Array(2048)].map((_,i)=>
 const canvas = document.getElementById("waveform");
 const canvasContext = canvas.getContext("2d");
 
-const gui_container = document.getElementById("rangecont");
-
 var push = 0
 var pushkey = [...Array(13)].map( (_,i)=> 0 )
 var keySound = [...Array(13)].map( (_,i)=> 0 )
@@ -85,8 +83,8 @@ function upTranspose(){
 const audioCtx = new AudioContext();
 
 
-
 setWavetableProcessor = async () => {
+    
     await audioCtx.audioWorklet.addModule("static/wavetable-processor.js")
 
 }
@@ -184,27 +182,52 @@ addEventListener("keyup", (event) => {
     
     
 keys.forEach(function(elem) {
-    elem.addEventListener("pointerleave", e => {leave(e)})
+    elem.addEventListener("mouseleave", e => {leave(e)})
 });
 
 keys.forEach(function(elem) {
-    elem.addEventListener("pointerover", e => {over(e)})
+    elem.addEventListener("mouseover", e => {over(e)})
 });
     
 keys.forEach(function(elem) {
-    elem.addEventListener('pointerdown',  e => {down(e)})
+    elem.addEventListener('mousedown',  e => {down(e)})
 });
     
 keys.forEach(function(elem) {
-    elem.addEventListener('pointerup',  e => {up(e)})
+    elem.addEventListener('mouseup',  e => {up(e)})
 });
 
 keys.forEach(function(elem) {
-    elem.addEventListener("pointercancel", e => {leave(e)})
+    elem.addEventListener("touchcancel", e => {up(e)})
 });
 
-piano = getElementById("piano")
-piano.addEventListener("touchmove", (e)=> e.preventDefault())
+function disableScroll(event) {
+    event.preventDefault();
+  }
+
+keys.forEach(function(elem) {
+    elem.addEventListener("touchstart", e => {
+        document.addEventListener('touchmove', disableScroll, { passive: false });
+
+    })
+});
+
+keys.forEach(function(elem) {
+    elem.addEventListener("touchend", e => {
+        if (e.touches.length == 1) document.addEventListener('touchmove', disableScroll, { passive: false });
+
+    })
+});
+
+keys.forEach(function(elem) {
+    elem.addEventListener("touchstart", e => {keydownev(
+        parseInt(e.currentTarget.dataset.num))})
+});
+keys.forEach(function(elem) {
+    elem.addEventListener("touchend", e => {keyupev(
+        parseInt(e.currentTarget.dataset.num))})
+});
+
 
 
 function resize(canvas) {
@@ -371,9 +394,10 @@ function up(event) {
     }
 
     pushkey[i]=0;
+
 }
 
-document.addEventListener('pointerover', e => {
+document.addEventListener('mouseover', e => {
     if ((push==1 && !e.target.closest("#whiteKey")) 
                  && !e.target.closest("#blackKey")){
 
