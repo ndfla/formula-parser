@@ -19,37 +19,34 @@
 }
 
 #waveform {
-    display: inline;
+    display: block;
     position: relative;
-        width: 90%;
-        height: 90%;
-        left: 5%;
-        top: 5%;
-        background-color: black;
-        border-radius: inherit;
-
+    width: 90%;
+    height: 90%;
+    margin: auto;
+    background-color: black;
+    border-radius: inherit;
 }
 
 #button_container {
     display: inline-block;
     position: relative;
-    left: 10%;
     top: 40%;
-    margin: auto;
+    left: 10%;
     width: 80%;
     border-radius: inherit;
     text-align: center;
-
 }
 
 
 #ui {
-    display: block;
-    aspect-ratio: 16/9;
+    display: inline-flex;
+    aspect-ratio: 16 / 9;
     width: 700px;
     background: rgb(137 223 201 / 75%);
     border-radius: 10px;
     margin: auto;
+    flex-direction: column;
 }
 
 #rangecont {
@@ -72,21 +69,20 @@
 }
 
 #input_formula {
-    display: inline;
+    display: block;
     outline: none;
     position: relative;
     top: 15%;
     left: 15%;
     border-radius: inherit;
-    border-width: 0;
+    border-width: 0px;
     width: 70%;
     height: 30%;
-    font-size: 20px;
+    font-size: 21px;
     line-height: 20px;
-    margin: auto;
     white-space: pre-wrap;
     resize: none;
-    vertical-align: top;
+
 }
 
 #input_num {
@@ -100,7 +96,6 @@
     width: 70%;
     height: 10%;
     font-size: 20px;
-    margin: auto;
 }
 
 #transpose_value {
@@ -130,7 +125,7 @@
 
 
 #canvas_container {
-    display: block;
+    display: inline-flex;
     aspect-ratio: 16/9;
     width: 700px;
     background: rgba(179,181,238,0.92);
@@ -167,6 +162,7 @@ button:hover {
 }
 
 #piano {
+    touch-action: manipulation;
     user-select: none;
     -moz-user-select: none;
     -webkit-user-select: none;
