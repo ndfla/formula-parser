@@ -8,6 +8,9 @@
     {
       "src": "./api/util/*.py",
       "use": "@vercel/python"
+    },
+    {
+      "src": "./api/templates/(.*)"
     }
   ],
   "routes": [
