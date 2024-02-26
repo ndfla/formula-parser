@@ -213,8 +213,10 @@ keys.forEach(function(elem) {
 });
 
 keys.forEach(function(elem) {
+    
     elem.addEventListener("touchend", e => {
-        if (e.touches.length == 1) document.addEventListener('touchmove', disableScroll, { passive: false });
+        console.log(e.touches.length)
+        if (e.touches.length == 0) document.removeEventListener('touchmove', disableScroll, { passive: false });
 
     })
 });
