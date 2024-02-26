@@ -187,6 +187,8 @@ button:hover {
     border-left: 3px solid rgb(143 169 181 / 16%); 
 
     z-index: 10;
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+    cursor:pointer;
 }
 
 #blackKey {
@@ -204,6 +206,8 @@ button:hover {
     border-left: 10px solid rgb(156 156 156 / 71%);
 
     z-index: 100;
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+    cursor:pointer;
 }
 
 #whiteKey.hov {
@@ -236,4 +240,9 @@ button:hover {
     font-style: normal;
     font-variation-settings:
       "wdth" 100;
-  }
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    width: 30px;
+    height: 30px;
+}

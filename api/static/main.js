@@ -198,8 +198,11 @@ keys.forEach(function(elem) {
 });
 
 keys.forEach(function(elem) {
-    elem.addEventListener("touchcancel", e => {keyupev(
-        parseInt(e.currentTarget.dataset.num))})
+    elem.addEventListener("touchcancel", e => {
+
+        e.changedTouches.forEach((value,i)=> {
+            keyupev(parseInt(value.currentTarget.dataset.num))})
+        })
 });
 
 
@@ -207,28 +210,24 @@ piano = document.getElementById("piano")
 
 function disableScroll(event) {
     event.preventDefault();
-  }
+}
+
 
 keys.forEach(function(elem) {
     elem.addEventListener("touchstart", e => {
-        piano.addEventListener('touchmove', disableScroll, { passive: false });
+
+        if (e.touches.length == 1) piano.addEventListener('touchmove', disableScroll, { passive: false });
+        
+        keydownev(parseInt(e.currentTarget.dataset.num))
     })
 });
-
 keys.forEach(function(elem) {
     elem.addEventListener("touchend", e => {
 
         if (e.touches.length == 0) piano.removeEventListener('touchmove', disableScroll, { passive: false });
-    })
-});
 
-keys.forEach(function(elem) {
-    elem.addEventListener("touchstart", e => {keydownev(
-        parseInt(e.currentTarget.dataset.num))})
-});
-keys.forEach(function(elem) {
-    elem.addEventListener("touchend", e => {keyupev(
-        parseInt(e.currentTarget.dataset.num))})
+        keyupev(parseInt(e.currentTarget.dataset.num))
+    })
 });
 
 
