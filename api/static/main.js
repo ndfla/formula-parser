@@ -216,25 +216,28 @@ function disableScroll(event) {
 keys.forEach(function(elem) {
     elem.addEventListener("touchstart", e => {
 
+ 
         if (e.touches.length == 1) piano.addEventListener('touchmove', disableScroll, { passive: false });
 
-        let i = parseInt(e.currentTarget.dataset.num)
 
+        let i = parseInt(e.currentTarget.dataset.num)
         keys[i].classList.add("hov");
 
-        startSound(i)
+        if (e.targetTouches.length==1) startSound(i)
+
     })
 });
 keys.forEach(function(elem) {
     elem.addEventListener("touchend", e => {
 
-        if (e.touches.length == 0) piano.removeEventListener('touchmove', disableScroll, { passive: false });
 
         let i = parseInt(e.currentTarget.dataset.num)
-
         keys[i].classList.remove("hov");
 
-        endSound(i)
+        if (e.targetTouches.length==0) endSound(i)
+
+        if (e.touches.length == 0) piano.removeEventListener('touchmove', disableScroll, { passive: false });
+
     })
 });
 
