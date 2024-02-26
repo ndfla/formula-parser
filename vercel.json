@@ -10,6 +10,14 @@
     {
       "src": "/api/(.*)",
       "dest": "/api"
+    },
+    {
+      "src": "/api/templates/(.*)",
+      "dest": "/api/templates"
+    },
+    {
+      "src": "/api/static/(.*)",
+      "dest": "/api/static"
     }
   ]
 }
