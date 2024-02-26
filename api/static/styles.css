@@ -69,9 +69,9 @@
 }
 
 #input_formula {
+    display: block;
     outline: none;
     position: relative;
-    left: 10%;
     top: 15%;
     border-radius: inherit;
     border-width: 0;
@@ -87,9 +87,9 @@
 }
 
 #input_num {
+    display: block;
     outline: none;
     position: relative;
-    left: 10%;
     top: 30%;
     border-radius: inherit;
     border-width: 0;
