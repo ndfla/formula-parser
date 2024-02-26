@@ -10,6 +10,7 @@
 | `sinh` | 1 | `sinh(x)`| $\sinh(x)$ |
 | `cosh` | 1 | `cosh(x)` | $\cosh(x)$ |
 | `tanh` | 1 | `tanh(x)` | $\tanh(x)$ |
+| `sinc` | 1 | `sinc(x)` | $\sinc(x)$ |
 | `exp` | 1 | `exp(x)` | $\exp(x)$ |
 | `log2` | 1 | `log2(x)` | $\log_2(x)$ |
 | `log` | 1 | `log(x)` | $\log(x)$ |
@@ -40,5 +41,5 @@
 | `e` | $e = 2.7182818284\dots$ |
 | `x` | current time-value getting plotted, from 0.0 to 1.0 |
 | `y` | current table number, from 0.0 to 1.0 |
-| `w` | current table number, from 1 to number of tables |
+| `w` | current table number, from 1 to number of waves |
 | `rand` | random numbers from -0.5 to 0.5 |
