@@ -10,7 +10,12 @@
       "use": "@vercel/python"
     },
     {
-      "src": "./api/templates/(.*)"
+      "src": "./api/templates/*.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "./api/static/*.js",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
