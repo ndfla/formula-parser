@@ -186,7 +186,7 @@ addEventListener("keyup", (event) => {
 keys.forEach(function(elem) {
     elem.addEventListener("pointerleave", e => {leave(e)})
 });
-    
+
 keys.forEach(function(elem) {
     elem.addEventListener("pointerover", e => {over(e)})
 });
@@ -199,7 +199,12 @@ keys.forEach(function(elem) {
     elem.addEventListener('pointerup',  e => {up(e)})
 });
 
+keys.forEach(function(elem) {
+    elem.addEventListener("pointercancel", e => {leave(e)})
+});
 
+piano = getElementById("piano")
+piano.addEventListener("touchmove", (e)=> e.preventDefault())
 
 
 function resize(canvas) {
