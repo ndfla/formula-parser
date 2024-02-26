@@ -10,7 +10,7 @@
 | `sinh` | 1 | `sinh(x)`| $\sinh(x)$ |
 | `cosh` | 1 | `cosh(x)` | $\cosh(x)$ |
 | `tanh` | 1 | `tanh(x)` | $\tanh(x)$ |
-| `sinc` | 1 | `sinc(x)` | $\sinc(x)$ |
+| `sinc` | 1 | `sinc(x)` | $\dfrac{\sin(x)}{x}$ |
 | `exp` | 1 | `exp(x)` | $\exp(x)$ |
 | `log2` | 1 | `log2(x)` | $\log_2(x)$ |
 | `log` | 1 | `log(x)` | $\log(x)$ |
