@@ -135,11 +135,19 @@ waveSlider.addEventListener('input', ()=>{
     }
 });
 
+function removeListeners() {
+    const oldBtnElement = document.getElementById('piano');
+    const newBtnElement = oldBtnElement.cloneNode(true);
+    oldBtnElement.parentNode.replaceChild(newBtnElement, oldBtnElement);
+    console.log('Removed all listners')
+  }
+
+
 transpose_button[0].addEventListener('pointerdown', (e) => downTranspose())
 
 transpose_button[1].addEventListener('pointerdown', (e) => upTranspose())
 
-addEventListener("keydown", (event) => {
+function pushKeyboard(event){
     if (!event.repeat){
         switch(event.key){
             case "a": keydownev(0);break;
@@ -160,9 +168,9 @@ addEventListener("keydown", (event) => {
             case "x": upTranspose();break;
         }
     }
-});
-    
-addEventListener("keyup", (event) => {
+}
+
+function upKeyboard(event){
     switch(event.key){
         case "a": keyupev(0);break;
         case "w": keyupev(1);break;
@@ -178,24 +186,44 @@ addEventListener("keyup", (event) => {
         case "j": keyupev(11);break;
         case "k": keyupev(12);break;
     }
-});
+}
+
+let controller = new AbortController()
+
+function addPianoEvent(){
+controller = new AbortController()
+
+addEventListener("keydown", e => pushKeyboard(e), {signal: controller.signal});
     
-    
+addEventListener("keyup", e => upKeyboard(e), {signal: controller.signal});
+
 keys.forEach(function(elem) {
-    elem.addEventListener("mouseleave", e => {leave(e)})
+    elem.addEventListener("mouseleave", e => {
+        if (touch) return 
+        leave(e)}, {signal: controller.signal})
 });
 
 keys.forEach(function(elem) {
-    elem.addEventListener("mouseover", e => {over(e)})
+    elem.addEventListener("mouseover", e => {
+        if (touch) return 
+        over(e)}, {signal: controller.signal})
 });
     
 keys.forEach(function(elem) {
-    elem.addEventListener('mousedown',  e => {down(e)})
+    elem.addEventListener('mousedown',  e => {
+        if (touch) return 
+        down(e)}, {signal: controller.signal})
 });
     
 keys.forEach(function(elem) {
-    elem.addEventListener('mouseup',  e => {up(e)})
+    elem.addEventListener('mouseup',  e => {
+        if (touch) return 
+        up(e)}, {signal: controller.signal})
 });
+
+}
+
+// addPianoEvent()
 
 keys.forEach(function(elem) {
     elem.addEventListener("touchcancel", e => {
@@ -212,13 +240,45 @@ function disableScroll(event) {
     event.preventDefault();
 }
 
+var touch = 0
+
+function resetPianoEvents(){
+
+    pushkey.forEach((value,i) => {
+        keys[i].classList.remove("hov");
+        if (value==1) {
+            keys[i].classList.remove("press");
+                
+            if ((push==1) && (keySound[i]==0)){
+                endSound(i);   
+            }     
+            pushkey[i]=0;
+            push=0
+        }
+    }) 
+        
+    keySound.forEach((value,i) => {
+        if (value==1) keyupev(i)
+    }) 
+        
+    controller.abort()
+}
+
+
+
+var restartClickOrKey
 
 keys.forEach(function(elem) {
+
     elem.addEventListener("touchstart", e => {
 
- 
-        if (e.touches.length == 1) piano.addEventListener('touchmove', disableScroll, { passive: false });
+        if (e.touches.length == 1) {
+            clearTimeout(restartClickOrKey)
+            touch = 1
+            piano.addEventListener('touchmove', disableScroll, { passive: false });
 
+            resetPianoEvents()
+        }
 
         let i = parseInt(e.currentTarget.dataset.num)
         keys[i].classList.add("hov");
@@ -230,16 +290,32 @@ keys.forEach(function(elem) {
 keys.forEach(function(elem) {
     elem.addEventListener("touchend", e => {
 
-
         let i = parseInt(e.currentTarget.dataset.num)
         keys[i].classList.remove("hov");
 
         if (e.targetTouches.length==0) endSound(i)
 
-        if (e.touches.length == 0) piano.removeEventListener('touchmove', disableScroll, { passive: false });
+        if (e.touches.length == 0) {
+            
+
+            piano.removeEventListener('touchmove', disableScroll, { passive: false });
+
+            touch=0
+
+            restartClickOrKey = setTimeout(function(){ 
+                if (touch==0) addPianoEvent()
+            },
+            500)   
+  
+        }
 
     })
 });
+
+addPianoEvent()
+
+
+
 
 
 function resize(canvas) {
