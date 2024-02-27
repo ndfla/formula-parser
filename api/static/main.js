@@ -229,7 +229,7 @@ keys.forEach(function(elem) {
     elem.addEventListener("touchcancel", e => {
 
         e.changedTouches.forEach((value,i)=> {
-            keyupev(parseInt(value.currentTarget.dataset.num))})
+            keyupev(parseInt(value.target.dataset.num))})
         })
 });
 
@@ -237,7 +237,7 @@ keys.forEach(function(elem) {
 piano = document.getElementById("piano")
 
 function disableScroll(event) {
-    event.preventDefault();
+    if (event.cancelable) event.preventDefault();
 }
 
 var touch = 0
@@ -302,10 +302,10 @@ keys.forEach(function(elem) {
 
             touch=0
 
-            restartClickOrKey = setTimeout(function(){ 
-                if (touch==0) addPianoEvent()
-            },
-            500)   
+            // restartClickOrKey = setTimeout(function(){ 
+            //     if (touch==0) addPianoEvent()
+            // },
+            // 500)   
   
         }
 
