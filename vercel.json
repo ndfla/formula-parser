@@ -1,5 +1,7 @@
 {
-    "functions": {},
+    "functions": { 
+        "api/server.py":{}
+    },
     "rewrites": [
         { 
             "source": "/(.*)", 
