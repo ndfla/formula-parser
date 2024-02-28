@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap" rel="stylesheet">
 
-    <script src="{{ url_for('static', filename='main.js') }}" defer></script>
+    <script type="module" src="{{ url_for('static', filename='main.js') }}" defer></script>
 
 </head>
 
@@ -32,7 +32,7 @@
                 <div onselectstart="return false;" id="transpose_button" style="position: absolute; left: 15%;">-</div>
                 <div onselectstart="return false;" id="transpose_button" style="position: relative;left: 40%;top: 0%;">+</div>
 
-	            <button id="send" class="inconsolata" onclick="runScript()" type="button">generate</button>
+	            <button id="send" class="inconsolata" type="button">generate</button>
                 <a id="download" href="#" download="parser.vitaltable" class="inconsolata" 
                     onclick="downloadWavetable()" type="button">download wavetable</a>
 
