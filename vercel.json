@@ -1,4 +1,7 @@
 {  "builds": [
+        { "src": "apis/static/*js", "use": "@vercel/static" },
+        { "src": "apis/static/module/*js", "use": "@vercel/static" },
+        { "src": "apis/static/module/AudioWorkletProcessor/*js", "use": "@vercel/static" },
         { "src": "apis/server.py", "use": "@vercel/python" },
         { "src": "apis/util/*.py", "use": "@vercel/python" }
     ],
