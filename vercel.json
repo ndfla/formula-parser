@@ -1,4 +1,8 @@
-{ 
+{  "builds": [
+        { "src": "apis/server.py", "use": "@vercel/python" },
+        { "src": "apis/util/*.py", "use": "@vercel/python" }
+    ],
+
     "rewrites": [
         { 
             "source": "/(.*)", 
