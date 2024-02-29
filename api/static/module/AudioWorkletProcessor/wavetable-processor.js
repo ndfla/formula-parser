@@ -83,9 +83,7 @@ class IndexSlider{
     }
   }
 
-  smoothing(){
-    const prev = this.prevwave
-    let output = this.wave
+  smoothing(prev, output){
 
     for(let k=0; k<output.length;k++){
 
@@ -100,18 +98,18 @@ class IndexSlider{
     }
 
     return brend;
-
   }
 
   smoothedSamples(){
-    if (this.index==wavetableindex) return this.wave
+    if (this.index==wavetableindex) return 1
 
     this.prevwave = this.wave
     this.wave = this.getWaveFromIndex()
 
     this.index = wavetableindex
 
-    return this.smoothing()
+    return 0
+    
   }
 }
 
@@ -150,7 +148,6 @@ class ConstantWaveProcessor extends AudioWorkletProcessor {
 
     const length = MonoOutput.length*this.frequency/48000
 
-
     if (parameters["Release"][0]) this.env.releaseFlag = true
 
     for (let i=0; i < MonoOutput.length; i++) {
@@ -173,11 +170,44 @@ class WavetableProcessor extends ConstantWaveProcessor{
   constructor(options){
     super(options)
     this.slider = new IndexSlider()
+
+    this.wave = this.slider.wave
   }
   process(inputs, outputs, parameters) { 
 
-    this.wave = this.slider.smoothedSamples()
-    return super.process(inputs, outputs, parameters)
+    this.wave = this.slider.wave
+    
+    if (this.slider.smoothedSamples()){
+      return super.process(inputs, outputs, parameters)
+    }
+    else{
+      
+      if (this.util) return false
+
+      let MonoOutput = outputs[0][0]
+
+      let prevMonoOutput = [...Array(MonoOutput.length)]
+
+      const length = MonoOutput.length*this.frequency/48000
+
+      if (parameters["Release"][0]) this.env.releaseFlag = true
+
+      for (let i=0; i < MonoOutput.length; i++) {
+
+        if (this.env.SimpleEnvelope()==0) return false
+
+        const index = (samplesize*(this.offset + length*(i/MonoOutput.length))) % samplesize
+
+        MonoOutput[i] = getAudioFromWave(index, this.wave)*this.env.gain
+        prevMonoOutput[i] = getAudioFromWave(index, this.slider.prevwave)*this.env.gain
+      }
+
+      this.offset = (this.offset + length) % 1
+
+      MonoOutput = this.slider.smoothing(prevMonoOutput,MonoOutput)
+
+      return true
+    }
   }
 }
 

@@ -1,12 +1,4 @@
-{  "builds": [
-        { "src": "requirements.txt", "use": "@vercel/static" },
-        { "src": "api/static/*js", "use": "@vercel/node" },
-        { "src": "api/static/module/*js", "use": "@vercel/node" },
-        { "src": "api/static/module/AudioWorkletProcessor/*js", "use": "@vercel/node" },
-        { "src": "api/static/main.js", "use": "@vercel/node" },
-        { "src": "api/server.py", "use": "@vercel/python" }
-    ],
-
+{  
     "rewrites": [
         { 
             "source": "/(.*)", 
