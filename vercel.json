@@ -3,6 +3,7 @@
         { "src": "api/static/*js", "use": "@vercel/static" },
         { "src": "api/static/module/*js", "use": "@vercel/static" },
         { "src": "api/static/module/AudioWorkletProcessor/*js", "use": "@vercel/static" },
+        { "src": "api/static/main.js", "use": "@vercel/node" },
         { "src": "api/server.py", "use": "@vercel/python" },
         { "src": "api/util/*.py", "use": "@vercel/python" }
     ],
