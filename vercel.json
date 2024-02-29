@@ -1,12 +1,10 @@
 {  "builds": [
         { "src": "requirements.txt", "use": "@vercel/static" },
-        { "src": "apis/static/*js", "use": "@vercel/static" },
-        { "src": "apis/static/module/*js", "use": "@vercel/static" },
-        { "src": "apis/static/module/AudioWorkletProcessor/*js", "use": "@vercel/static" },
-
-        { "src": "apis/static/main.js", "use": "@vercel/node" },
-        { "src": "apis/server.py", "use": "@vercel/python" },
-        { "src": "apis/util/*.py", "use": "@vercel/python" }
+        { "src": "api/static/*js", "use": "@vercel/static" },
+        { "src": "api/static/module/*js", "use": "@vercel/static" },
+        { "src": "api/static/module/AudioWorkletProcessor/*js", "use": "@vercel/static" },
+        { "src": "api/server.py", "use": "@vercel/python" },
+        { "src": "api/util/*.py", "use": "@vercel/python" }
     ],
 
     "rewrites": [
