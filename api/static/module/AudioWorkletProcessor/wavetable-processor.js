@@ -99,8 +99,8 @@ class IndexSlider{
 
     return brend;
   }
-
-  smoothedSamples(){
+ 
+  isValueChanged(){
     if (this.index==wavetableindex) return 1
 
     this.prevwave = this.wave
@@ -175,13 +175,11 @@ class WavetableProcessor extends ConstantWaveProcessor{
   }
   process(inputs, outputs, parameters) { 
 
-    this.wave = this.slider.wave
-    
-    if (this.slider.smoothedSamples()){
+    if (this.slider.isValueChanged()){
+      this.wave = this.slider.wave
       return super.process(inputs, outputs, parameters)
     }
     else{
-      
       if (this.util) return false
 
       let MonoOutput = outputs[0][0]
@@ -198,7 +196,7 @@ class WavetableProcessor extends ConstantWaveProcessor{
 
         const index = (samplesize*(this.offset + length*(i/MonoOutput.length))) % samplesize
 
-        MonoOutput[i] = getAudioFromWave(index, this.wave)*this.env.gain
+        MonoOutput[i] = getAudioFromWave(index, this.slider.wave)*this.env.gain
         prevMonoOutput[i] = getAudioFromWave(index, this.slider.prevwave)*this.env.gain
       }
 
