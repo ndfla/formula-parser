@@ -1,11 +1,4 @@
-{  "builds": [
-        { "src": "api/server.py", "use": "@vercel/python" },
-        { "src": "api/static/main.js", "use": "@vercel/node" },
-        { "src": "api/static/module/*.js", "use": "@vercel/node" },
-        { "src": "api/static/module/AudioWorkletProcessor/wavetable-processor.js", "use": "@vercel/node" }
-
-        
-  ] ,
+{ 
     "rewrites": [
         { 
             "source": "/(.*)", 
