@@ -1,4 +1,5 @@
 {  "builds": [
+        { "src": "requirements.txt", "use": "@vercel/static" },
         { "src": "apis/static/*js", "use": "@vercel/static" },
         { "src": "apis/static/module/*js", "use": "@vercel/static" },
         { "src": "apis/static/module/AudioWorkletProcessor/*js", "use": "@vercel/static" },
