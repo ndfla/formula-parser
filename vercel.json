@@ -1,5 +1,5 @@
 {  "builds": [
-        { "src": "api/templates/index.html", "use": "@vercel/static" },
+        { "src": "requirements.txt", "use": "@vercel/static" },
         { "src": "api/server.py", "use": "@vercel/python" },
         { "src": "api/util/*.py", "use": "@vercel/python" },
         { "src": "api/static/main.js", "use": "@vercel/node" },
