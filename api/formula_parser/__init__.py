@@ -1,5 +1,6 @@
 import re
 import numpy as np
+
 from .parser_functions  import expand_sum, expand, subs
 from .encode_vitaltable import create_vitaltable
 

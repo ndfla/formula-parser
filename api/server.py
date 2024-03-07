@@ -1,6 +1,10 @@
 from flask import Flask, render_template, request, jsonify,url_for
 
-from formula_parser.__init__ import execute
+from formula_parser import __init__
+
+from formula_parser import execute
+
+
 import json
 import os
 
