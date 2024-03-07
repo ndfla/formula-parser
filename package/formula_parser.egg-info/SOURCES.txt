@@ -1,8 +1,9 @@
+MANIFEST.in
 setup.py
 formula_parser/__init__.py
+formula_parser/base64_table.json
 formula_parser/encode_vitaltable.py
 formula_parser/functions_and_constants.py
-formula_parser/parser.py
 formula_parser/parser_functions.py
 formula_parser.egg-info/PKG-INFO
 formula_parser.egg-info/SOURCES.txt

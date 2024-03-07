@@ -2,7 +2,9 @@ import json
 import os
 import struct
 
-with open("api/formula_parser/base64_table.json") as f:
+dir = os.path.dirname(__file__)
+
+with open( os.path.join(dir,"base64_table.json") ) as f:
     table = json.load(f)  
 inv_table = {v:k for k,v in table.items()}
 
