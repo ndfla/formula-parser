@@ -1,9 +1,13 @@
 {  
     "builds": [
-        { "src": "*.html", "use": "@vercel/static" },
-        { "src": "*.css", "use": "@vercel/static" },
-        { "src": "*.py", "use": "@vercel/python" },
-        { "src": "*.js", "use": "@vercel/node" }
+        { "src": "api/templates/index.html", "use": "@vercel/static" },
+        { "src": "api/static/styles.css", "use": "@vercel/static" },
+        { "src": "api/formula_parser/*.py", "use": "@vercel/python" },
+        { "src": "api/server.py", "use": "@vercel/python" },
+
+        { "src": "api/static/main.js", "use": "@vercel/node" },
+        { "src": "api/static/module/*.js", "use": "@vercel/node" },   
+        { "src": "api/static/module/AudioWorkletProcessor/*.js", "use": "@vercel/node" }
     ],
 
     "rewrites": [
