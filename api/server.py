@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, jsonify,url_for
 
 from formula_parser import execute
 
-
 import json
 import os
 
