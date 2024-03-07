@@ -1,4 +1,4 @@
-from formula_parser import functions_and_constants as fc
+from . import functions_and_constants as fc
 
 def getorder(formula):
     

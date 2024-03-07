@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, jsonify,url_for
 
-import formula_parser
+from formula_parser import execute
 import json
 import os
 
@@ -31,7 +31,7 @@ def run_script():
     
     pydata = json.loads(data.decode('utf-8'))['values']
     
-    wavefloat, jsonfile = formula_parser.execute(pydata[0], int(pydata[1]), 'test_wave', 'vitaltable')
+    wavefloat, jsonfile = execute(pydata[0], int(pydata[1]), 'test_wave', 'vitaltable')
     
     return jsonify({'result': wavefloat, "wavetable": jsonfile})
     

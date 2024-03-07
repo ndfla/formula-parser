@@ -1,7 +1,7 @@
 import re
 import numpy as np
-from formula_parser import parser_functions 
-from formula_parser import encode_vitaltable
+from .parser_functions  import expand_sum, expand, subs
+from .encode_vitaltable import create_vitaltable
 
 def execute(formula, num_of_waves, filename, out):
     
@@ -10,7 +10,7 @@ def execute(formula, num_of_waves, filename, out):
     pattern = re.compile('[^a-zA-Z0-9\._]')
     result = pattern.finditer(formula)
     
-    splited_formula= []
+    splited_formula = []
     p = 0
     for i in result:
             if p!=i.start():
@@ -22,7 +22,7 @@ def execute(formula, num_of_waves, filename, out):
     
     splited_formula = [word for word in splited_formula if word]
         
-    splited_formula = parser_functions.expand_sum(splited_formula)
+    splited_formula = expand_sum(splited_formula)
     
     wave_list = []
     
@@ -36,13 +36,13 @@ def execute(formula, num_of_waves, filename, out):
         positions = np.floor(y*256)
      
     for i in range(num_of_waves):
-        formula = parser_functions.subs(splited_formula,'y', y[i])
-        formula = parser_functions.subs(formula,'w', w[i])
-        formula = parser_functions.subs(formula,'rand', np.random.rand(2048)-0.5)
+        formula = subs(splited_formula,'y', y[i])
+        formula = subs(formula,'w', w[i])
+        formula = subs(formula,'rand', np.random.rand(2048)-0.5)
    
         wave_list.append(formula)
         
-    waves = [parser_functions.expand(i) for i in wave_list]
+    waves = [expand(i) for i in wave_list]
     
     if type(waves[0])!=np.ndarray:
         print(waves)
@@ -51,7 +51,7 @@ def execute(formula, num_of_waves, filename, out):
             
         waves = [i/m for i in waves]
 
-        jsonfile = encode_vitaltable.create_vitaltable(positions, waves, filename, out)
+        jsonfile = create_vitaltable(positions, waves, filename, out)
         
         waves = [i.tolist() for i in waves if type(i)==np.ndarray]
     return waves, jsonfile
