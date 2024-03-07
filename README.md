@@ -39,7 +39,7 @@
 | ---- | ---- |
 | `pi` | $\pi = 3.1415926535\dots$ |
 | `e` | $e = 2.7182818284\dots$ |
-| `x` | current time-value getting plotted, from 0.0 to 1.0 |
-| `y` | current table number, from 0.0 to 1.0 |
-| `w` | current table number, from 1 to number of waves |
-| `rand` | random numbers from -0.5 to 0.5 |
+| `x` | $(0, \dots, n/2048, \dots, 2047/2048 )$  x must be included in formula|
+| `y` | $(0, 1/n, \dots, n-1/n )$ n is number of waves |
+| `w` | $(1, 2, \dots, n )$ n is number of waves |
+| `rand` | $(x_1, x_2, \dots, x_{2048} )$ $x_n$ is random numbers from -0.5 to 0.5 |
