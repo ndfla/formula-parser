@@ -5,7 +5,13 @@ from formula_parser import execute
 import json
 import os
 
-app = Flask(__name__)
+current_dir = os.path.dirname(os.path.abspath(__file__))
+
+parent_dir = os.path.abspath(os.path.join(current_dir, os.pardir))
+
+static_path = os.path.join(parent_dir, "static")
+
+app = Flask(__name__, static_folder=static_path)
 
 @app.context_processor
 def override_url_for():
@@ -15,8 +21,7 @@ def dated_url_for(endpoint, **values):
     if endpoint == 'static':
         filename = values.get('filename', None)
         if filename:
-            file_path = os.path.join(app.root_path,
-                                 endpoint, filename)
+            file_path = os.path.join(static_path, filename)
             values['q'] = int(os.stat(file_path).st_mtime)
     return url_for(endpoint, **values)
 
@@ -39,4 +44,5 @@ def run_script():
 
 if __name__ == '__main__':
     app.run(debug=True)
+    
     
